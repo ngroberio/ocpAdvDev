@@ -38,8 +38,8 @@ while : ; do
   echo "Nexus Liveness Check..."
   oc get pod -n $PROJ | grep -v deploy |grep "1/1.*Running"
   [[ "$?" == "1" ]] || break
-  echo "...no. Sleeping 10 seconds."
-  sleep 10
+  echo "...no. Sleeping 15 seconds."
+  sleep 15
 done
 
 echo ">> STEP 2 >>>> Configuring Nexus"

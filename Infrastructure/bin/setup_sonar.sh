@@ -20,4 +20,4 @@ PROJ=$GUID-sonarqube
 oc create -f $TMPL -n $PROJ
 
 echo ">> Sonarqube liveness check"
-./Infrastructure/bin/waitPodReady.sh sonarqube ${PROJ}
+./Infrastructure/bin/podLivenessCheck.sh sonarqube ${PROJ}

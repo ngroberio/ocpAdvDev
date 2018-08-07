@@ -3,9 +3,9 @@ items:
 - kind: Secret
   apiVersion: v1
   data:
-    database-name: sonarDB
-    database-password: sonarpwd
-    database-user: sonar
+    database-name: c29uYXJEQg==
+    database-password: c29uYXJQd2Q=
+    database-user: c29uYXJVc2Vy
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp

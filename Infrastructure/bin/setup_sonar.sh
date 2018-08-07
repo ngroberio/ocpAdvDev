@@ -20,5 +20,5 @@ PROJ=$GUID-sonarqube
 oc create -f $TMPL -n $PROJ
 
 echo ">> Sonarqube liveness check"
-sleep 60
-./Infrastructure/bin/podLivenessCheck.sh sonarqube ${PROJ}
+sleep 90
+#./Infrastructure/bin/podLivenessCheck.sh sonarqube ${PROJ}

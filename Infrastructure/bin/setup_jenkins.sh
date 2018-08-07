@@ -28,14 +28,14 @@ echo "Setting up Jenkins in project ${GUID}-jenkins from Git Repo ${REPO} for Cl
 
 # To be Implemented by Student
 PROJ=${GUID}-jenkins
-SKOPEO_DOCKERFILE=./Infrastructure/templates/skopeo/Dockerfile
+SKOPEO_DOCKERFILE=./Infrastructure/skopeo/Dockerfile
 JENKINS=./Infrastructure/templates/jenkins.yaml
 
 echo ">>> STEP #2 -- CREATE IMAGE FOR SKOPEO"
 
 cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJ}  -D -
 echo ">> CONFIG CREATED. WAIT FOR IMAGE BUILD"
-sleep 8
+sleep 10
 oc logs -f bc/skopeo -n ${PROJ}
 
 

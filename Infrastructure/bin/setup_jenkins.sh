@@ -27,3 +27,38 @@ echo "Setting up Jenkins in project ${GUID}-jenkins from Git Repo ${REPO} for Cl
 # * CLUSTER: the base url of the cluster used (e.g. na39.openshift.opentlc.com)
 
 # To be Implemented by Student
+PROJ=${GUID}-jenkins
+SKOPEO_DOCKERFILE=./Infrastructure/templates/skopeo/Dockerfile
+JENKINS=./Infrastructure/templates/jenkins.yaml
+
+echo ">>> STEP #2 -- CREATE IMAGE FOR SKOPEO"
+
+cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJ}  -D -
+echo ">> CONFIG CREATED. WAIT FOR IMAGE BUILD"
+sleep 8
+oc logs -f bc/skopeo -n ${PROJ}
+
+
+echo ">>> STEP #3 -- PIPELINES CREATION"
+
+function newPipelineBuild {
+    echo "Setup pipeline: ${1} with Context Dir: ${2}"
+    oc new-build -e CLUSTER=${CLUSTER} -e GUID=${GUID} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJ} --name=${1}
+    oc env bc/${1} CLUSTER=$CLUSTER GUID=$GUID -n ${PROJ}
+}
+newPipelineBuild mlbparks-pipeline MLBParks
+newPipelineBuild nationalparks-pipeline Nationalparks
+newPipelineBuild parksmap-pipeline ParksMap
+
+echo ">>> STEP #4 -- +ADD PERMISSIONS TO JENKINS"
+oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:default -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:default -n ${GUID}-parks-prod
+oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:jenkins -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:jenkins -n ${GUID}-parks-prod
+
+echo ">>> STEP #5 -- JENKINS LIVENESS CHECK"
+oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJ}
+./Infrastructure/bin/podLivenessCheck.sh jenkins ${PROJ}
+oc cancel-build -n $PROJ bc/mlbparks-pipeline
+oc cancel-build -n $PROJ bc/nationalparks-pipeline
+oc cancel-build -n $PROJ bc/parksmap-pipeline

@@ -51,10 +51,10 @@ newPipelineBuild nationalparks-pipeline Nationalparks
 newPipelineBuild parksmap-pipeline ParksMap
 
 echo ">>> STEP #4 -- +ADD PERMISSIONS TO JENKINS"
-oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:default -n ${GUID}-parks-dev
-oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:default -n ${GUID}-parks-prod
-oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:jenkins -n ${GUID}-parks-dev
-oc policy add-role-to-user edit system:serviceaccount:ngroberio-jenkins:jenkins -n ${GUID}-parks-prod
+oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:default -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:default -n ${GUID}-parks-prod
+oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:jenkins -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:jenkins -n ${GUID}-parks-prod
 
 echo ">>> STEP #5 -- JENKINS LIVENESS CHECK"
 oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJ}

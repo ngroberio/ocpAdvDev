@@ -33,5 +33,5 @@ echo ">>> STEP #2 > SET APPS FOR PROD"
 oc create -f $APPS_TMPL -n $PROJ
 
 echo ">>> STEP #3 > ADD VIEW PERMISSIONS"
-oc policy add-role-to-group view system:serviceaccount:ngroberio-parks-prod -n ${GUID}-parks-dev
+oc policy add-role-to-group view system:serviceaccount:92b7-parks-prod -n ${GUID}-parks-dev
 oc policy add-role-to-user view --serviceaccount=default -n $PROJ

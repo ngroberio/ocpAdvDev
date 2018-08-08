@@ -14,6 +14,8 @@ oc delete project $GUID-sonarqube
 oc delete project $GUID-jenkins
 oc delete project $GUID-parks-dev
 oc delete project $GUID-parks-prod
+oc delete pv mongodb
+oc delete pvc mongodb
 
 echo "Creating all Homework Projects for GUID=${GUID} and USER=${USER}"
 oc new-project ${GUID}-nexus        --display-name="${GUID} AdvDev Homework Nexus"

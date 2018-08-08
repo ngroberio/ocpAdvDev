@@ -16,7 +16,7 @@ echo ">> Setting up Sonarqube in project $GUID-sonarqube"
 # To be Implemented by Student
 TMPL=./Infrastructure/templates/sonar.yaml
 PROJ=$GUID-sonarqube
-# PROJ=ngroberio-test
+# PROJ=92b7-test
 oc create -f $TMPL -n $PROJ
 
 echo ">> Sonarqube liveness check"

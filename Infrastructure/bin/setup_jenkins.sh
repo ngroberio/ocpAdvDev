@@ -33,20 +33,18 @@ JENKINS=./Infrastructure/templates/jenkins.yaml
 
 echo ">>> STEP #2 -- CREATE IMAGE FOR SKOPEO"
 
-cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJ}  -D -
+cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJ} -D -
 echo ">> CONFIG CREATED. WAIT FOR IMAGE BUILD"
 sleep 10
 oc logs -f bc/skopeo -n ${PROJ}
 
-
 echo ">>> STEP #3 -- PIPELINES CREATION"
 
 function newPipelineBuild {
-    echo "Setup pipeline: ${1} with Context Dir: ${2}"
-    oc new-build -e CLUSTER=${CLUSTER} -e GUID=${GUID} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJ} --name=${1}
-    oc env bc/${1} CLUSTER=$CLUSTER GUID=$GUID -n ${PROJ}
+    echo ">>> SETUP PIPELINES: ${1} -- DIR: ${2}"
+    oc new-build -e GUID=${GUID} -e CLUSTER=${CLUSTER} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJ} --name=${1}
+    oc env bc/${1} GUID=$GUID CLUSTER=$CLUSTER -n ${PROJ}
 }
-
 newPipelineBuild mlbparks-pipeline MLBParks
 newPipelineBuild nationalparks-pipeline Nationalparks
 newPipelineBuild parksmap-pipeline ParksMap
@@ -57,7 +55,7 @@ oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:default -n
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-dev
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
 
-echo ">>> STEP #5 -- JENKINS LIVENESS CHECK"
+echo ">>> STEP #5 -- JENKINS LIVENESS CHECK FOR PROJ: ${PROJ}"
 oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJ}
 ./Infrastructure/bin/podLivenessCheck.sh jenkins ${PROJ}
 oc cancel-build -n $PROJ bc/mlbparks-pipeline

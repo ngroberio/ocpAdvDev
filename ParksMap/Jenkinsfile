@@ -41,7 +41,7 @@ podTemplate(
 
     stage("INTEGRATION TESTS"){
       echo ">>> START INTEGRATION TESTS"
-      echo "<<< UNIT INTEGRATION DONE"
+      echo "<<< INTEGRATION TESTS DONE"
     }
 
     stage('SONARQUBE CODE CHECKS') {

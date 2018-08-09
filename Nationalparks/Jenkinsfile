@@ -51,7 +51,7 @@ podTemplate(
 
     stage("INTEGRATION TESTS"){
       echo ">>> START INTEGRATION TESTS"
-      echo "<<< UNIT INTEGRATION DONE"
+      echo "<<< INTEGRATION TESTS DONE"
     }
 
     stage('SONARQUBE CODE CHECKS') {
@@ -63,7 +63,7 @@ podTemplate(
     stage('PUSH TO NEXUS') {
       echo ">>> PUSH TO NEXUS"
       sh "mvn -s nexus_settings.xml -f ${projectFolder} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-${GUID}-nexus.apps.${CLUSTER}/repository/releases"
-      echo "<<< PUSH TO NEXUS DONE"      
+      echo "<<< PUSH TO NEXUS DONE"
     }
 
     stage("DEPLOY TO DEV"){

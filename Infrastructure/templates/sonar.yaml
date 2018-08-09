@@ -3,9 +3,9 @@ items:
 - kind: Secret
   apiVersion: v1
   data:
-    database-name: c29uYXJEQg==
-    database-password: c29uYXJQd2Q=
-    database-user: c29uYXJVc2Vy
+    database-name: c29uYXJxdWJl
+    database-password: YWRtaW4=
+    database-user: YWRtaW4=
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
@@ -32,7 +32,7 @@ items:
       activeDeadlineSeconds: 21600
       recreateParams:
         timeoutSeconds: 600
-      resources: 
+      resources:
         limits:
           memory: 256Mi
         requests:
@@ -125,7 +125,7 @@ items:
       activeDeadlineSeconds: 21600
       recreateParams:
         timeoutSeconds: 600
-      resources: 
+      resources:
         limits:
           memory: 256Mi
         requests:

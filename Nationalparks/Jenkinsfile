@@ -7,8 +7,8 @@ podTemplate(
     containerTemplate(
       name: "jnlp",
       image: "docker-registry.default.svc:5000/${GUID}-jenkins/jenkins-slave-appdev",
-      resourceRequestMemory: "1Gi",
-      resourceLimitMemory: "2Gi"
+      resourceRequestMemory: "2Gi",
+      resourceLimitMemory: "3Gi"
     )
   ]
 ) {
@@ -45,7 +45,7 @@ podTemplate(
     def artifactId = getArtifactIdFromPom(pomPath)
     def version    = getVersionFromPom(pomPath)
     def devTag  = "${version}-${BUILD_NUMBER}"
-    def prodTag = "${version}"  
+    def prodTag = "${version}"
     stage("Deploy Dev"){
       sh "oc start-build ${name} --from-file=${jarPath} -F -n ${GUID}-parks-dev"
       sh "oc tag ${GUID}-parks-dev/${name}:latest ${GUID}-parks-dev/${name}:${devTag} -n ${GUID}-parks-dev"
@@ -59,7 +59,7 @@ podTemplate(
       def token=readFile ('/var/run/secrets/kubernetes.io/serviceaccount/token')
       sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds=default:${token} --dest-creds=admin:admin123 docker://docker-registry.default.svc:5000/${GUID}-parks-dev/${name}:${devTag} docker://nexus-docker.${GUID}-nexus.svc:5000/${GUID}-parks/dev/${name}:${devTag}"
     }
-     def curTarget 
+     def curTarget
      def destTarget
      def isGreen
     stage("Deploy Prod"){

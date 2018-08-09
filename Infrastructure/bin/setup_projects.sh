@@ -16,7 +16,7 @@ oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:jenkins -n $
 oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:jenkins -n ${GUID}-nexus
 oc policy add-role-to-user admin system:serviceaccount:gpte-jenkins:jenkins -n ${GUID}-sonarqube
 
-echo ">>> ANOTATE NAMESPACES FOR USER=${USER}"
+echo ">>> ANOTATE NAMESPACES FOR GPTE"
 oc annotate namespace ${GUID}-parks-prod openshift.io/requester=system:serviceaccount:gpte-jenkins:jenkins --overwrite
 oc annotate namespace ${GUID}-parks-dev  openshift.io/requester=system:serviceaccount:gpte-jenkins:jenkins --overwrite
 oc annotate namespace ${GUID}-jenkins    openshift.io/requester=system:serviceaccount:gpte-jenkins:jenkins --overwrite
@@ -29,8 +29,6 @@ oc delete project $GUID-sonarqube
 oc delete project $GUID-jenkins
 oc delete project $GUID-parks-dev
 oc delete project $GUID-parks-prod
-oc delete pv mongodb
-oc delete pvc mongodb
 sleep 50
 
 echo "Creating all Homework Projects for GUID=${GUID} and USER=${USER}"

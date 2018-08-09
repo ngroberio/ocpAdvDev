@@ -107,7 +107,7 @@ items:
       sourceStrategy:
         env:
         - name: MAVEN_MIRROR_URL
-          value: http://nexus3.92b7-nexus.svc.cluster.local:8081/repository/maven-all-public
+          value: http://nexus3.38a0-nexus.svc.cluster.local:8081/repository/maven-all-public
         from:
           kind: ImageStreamTag
           name: jboss-eap70-openshift:1.7
@@ -271,7 +271,7 @@ items:
       sourceStrategy:
         env:
         - name: MAVEN_MIRROR_URL
-          value: http://nexus3.92b7-nexus.svc.cluster.local:8081/repository/maven-all-public
+          value: http://nexus3.38a0-nexus.svc.cluster.local:8081/repository/maven-all-public
         from:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.2
@@ -436,7 +436,7 @@ items:
       sourceStrategy:
         env:
         - name: MAVEN_MIRROR_URL
-          value: http://nexus3.92b7-nexus.svc.cluster.local:8081/repository/maven-all-public
+          value: http://nexus3.38a0-nexus.svc.cluster.local:8081/repository/maven-all-public
         from:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.2

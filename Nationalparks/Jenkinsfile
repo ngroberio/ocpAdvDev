@@ -97,10 +97,10 @@ podTemplate(
       currentTarget = sh returnStdout: true, script:"oc get route/${name} -n ${GUID}-parks-prod --template=\"{{.spec.to.name}}\""
       echo "<<< CURRENT TARGET DETECTED ${currentTarget}"
 
-      echo ">>> CHECK CURRENT COLOR"
+      echo ">>> CHECK CURRENT COULOR"
       isCurrentGreen=currentTarget.contains("blue")
       newTarget= isCurrentGreen?"${name}-green":"${name}-blue"
-      echo "<<< CURRENT COLOR DETECTED ${newTarget}"
+      echo "<<< CURRENT COULOR DETECTED ${newTarget}"
 
       echo ">>> DEPLOY TO TARGET: ${newTarget}"
       sh "oc tag ${GUID}-parks-dev/${name}:${devTag} ${GUID}-parks-prod/${name}:${prodTag} -n ${GUID}-parks-prod"

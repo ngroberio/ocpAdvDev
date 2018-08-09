@@ -24,9 +24,9 @@ APPS_TMPL=./Infrastructure/templates/prod_apps.yaml
 echo ">>> STEP #1 > SET MONGODB REPLICAS"
 oc create -f $MONGO_TMPL -n $PROJ
 
-./Infrastructure/bin/waitPodReady.sh mongodb-0 $PROJ
-./Infrastructure/bin/waitPodReady.sh mongodb-1 $PROJ
-./Infrastructure/bin/waitPodReady.sh mongodb-2 $PROJ
+./Infrastructure/bin/podLivenessCheck.sh mongodb-0 $PROJ
+./Infrastructure/bin/podLivenessCheck.sh mongodb-1 $PROJ
+./Infrastructure/bin/podLivenessCheck.sh mongodb-2 $PROJ
 
 echo ">>> STEP #2 > SET APPS FOR PROD"
 

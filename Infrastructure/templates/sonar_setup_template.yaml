@@ -55,12 +55,12 @@ items:
     strategy:
       activeDeadlineSeconds: 21600
       recreateParams:
-        timeoutSeconds: 600
-      resources: 
+        timeoutSeconds: 700
+      resources:
         limits:
-          memory: 256Mi
+          memory: 512Mi
         requests:
-          memory: 256Mi
+          memory: 512Mi
       type: Recreate
     template:
       metadata:
@@ -148,12 +148,12 @@ items:
     strategy:
       activeDeadlineSeconds: 21600
       recreateParams:
-        timeoutSeconds: 600
-      resources: 
+        timeoutSeconds: 700
+      resources:
         limits:
-          memory: 256Mi
+          memory: 512Mi
         requests:
-          memory: 256Mi
+          memory: 512Mi
       type: Recreate
     template:
       metadata:

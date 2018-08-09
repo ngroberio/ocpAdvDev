@@ -54,7 +54,7 @@ podTemplate(
     }
     stage("After Deploy Dev"){
       echo "Wait dev build finish to release resources"
-      sh " ./Infrastructure/bin/waitPodReady.sh ${name} ${GUID}-parks-dev"
+      sh " ./Infrastructure/bin/podLivenessCheck.sh ${name} ${GUID}-parks-dev"
       echo "Copy image to Nexus Docker Registry"
       def token=readFile ('/var/run/secrets/kubernetes.io/serviceaccount/token')
       sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds=default:${token} --dest-creds=admin:admin123 docker://docker-registry.default.svc:5000/${GUID}-parks-dev/${name}:${devTag} docker://nexus-docker.${GUID}-nexus.svc:5000/${GUID}-parks/dev/${name}:${devTag}"
@@ -75,8 +75,8 @@ podTemplate(
     }
     stage("Before Swap B/G"){
       echo "Wait pods readiness "
-      sh " ./Infrastructure/bin/waitPodReady.sh ${name} ${GUID}-parks-dev"
-      sh " ./Infrastructure/bin/waitPodReady.sh ${destTarget} ${GUID}-parks-prod"
+      sh " ./Infrastructure/bin/podLivenessCheck.sh ${name} ${GUID}-parks-dev"
+      sh " ./Infrastructure/bin/podLivenessCheck.sh ${destTarget} ${GUID}-parks-prod"
     }
     stage("Swap B/G deployment"){
       sh "oc patch svc/${name} -n ${GUID}-parks-prod -p '{\"spec\":{\"selector\":{\"deploymentconfig\":\"${destTarget}\"}}}' "

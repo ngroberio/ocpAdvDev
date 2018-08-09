@@ -107,7 +107,7 @@ objects:
     - ReadWriteOnce
     resources:
       limits:
-        storage: 4Gi
+        storage: 5Gi
       requests:
         storage: 4Gi
 - kind: Route

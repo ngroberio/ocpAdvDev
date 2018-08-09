@@ -17,16 +17,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 700
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -108,16 +108,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 700
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -329,11 +329,11 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
@@ -420,11 +420,11 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
@@ -598,7 +598,7 @@ items:
       kind: Service
       name: nationalparks-blue
       weight: 100
-    wildcardPolicy: None    
+    wildcardPolicy: None
 - kind: Route
   apiVersion: v1
   metadata:
@@ -612,7 +612,7 @@ items:
       kind: Service
       name: nationalparks
       weight: 100
-    wildcardPolicy: None  
+    wildcardPolicy: None
 - kind: ImageStream
   apiVersion: v1
   metadata:
@@ -640,16 +640,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 700
         updatePeriodSeconds: 1
       type: Rolling
     template:
@@ -727,16 +727,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
-        limits: 
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 250m
+        limits:
+          memory: 512Mi
+          cpu: 250m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 700
         updatePeriodSeconds: 1
       type: Rolling
     template:

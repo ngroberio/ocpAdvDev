@@ -17,14 +17,14 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
+          memory: 512Mi
         limits:
-          memory: 256Mi
+          memory: 512Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 700
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -181,14 +181,14 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
+          memory: 512Mi
         limits:
-          memory: 256Mi
+          memory: 512Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 800
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -346,9 +346,9 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
+          memory: 512Mi
         limits:
-          memory: 256Mi
+          memory: 512Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%

@@ -39,6 +39,11 @@ podTemplate(
       echo "<<< UNIT TESTS DONE"
     }
 
+    stage("INTEGRATION TESTS"){
+      echo ">>> START INTEGRATION TESTS"
+      echo "<<< UNIT INTEGRATION DONE"
+    }
+
     stage('SONARQUBE CODE CHECKS') {
       echo ">>> START CODE ANALYSIS"
       sh "mvn -s nexus_settings.xml -f ${projectFolder} sonar:sonar -Dsonar.host.url=http://sonarqube-${GUID}-sonarqube.apps.${CLUSTER}"

@@ -35,3 +35,5 @@ oc create -f $APPS_TMPL -n $PROJ
 echo ">>> STEP #3 > ADD VIEW PERMISSIONS"
 oc policy add-role-to-group view system:serviceaccount:${GUID}-parks-prod -n ${GUID}-parks-dev
 oc policy add-role-to-user view --serviceaccount=default -n $PROJ
+
+sleep 20

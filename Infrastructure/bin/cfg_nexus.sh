@@ -145,15 +145,20 @@ EOM
 
 # Red Hat Proxy Repos
 add_nexus3_proxy_repo redhat-ga https://maven.repository.redhat.com/ga/ $1 $2 $3
+sleep 15
 
 # Repo Group to include all proxy repos
 add_nexus3_group_proxy_repo redhat-ga,maven-central,maven-releases,maven-snapshots maven-all-public $1 $2 $3
+sleep 15
 
 # NPM Proxy Repo
 add_nexus3_npmproxy_repo npm https://registry.npmjs.org/ $1 $2 $3
+sleep 15
 
 # Private Docker Registry
 add_nexus3_docker_repo docker 5000 $1 $2 $3
+sleep 15
 
 # Maven release Repo
 add_nexus3_release_repo releases $1 $2 $3
+sleep 15

@@ -26,3 +26,5 @@ oc create -f $APPS_TMPL -n $PROJ
 
 echo ">>> STEP #3 > ADD PERMISSIONS"
 oc policy add-role-to-user view --serviceaccount=default -n $PROJ
+
+sleep 20

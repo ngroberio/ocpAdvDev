@@ -63,3 +63,5 @@ oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2G
 oc cancel-build -n $PROJ bc/mlbparks-pipeline
 oc cancel-build -n $PROJ bc/nationalparks-pipeline
 oc cancel-build -n $PROJ bc/parksmap-pipeline
+
+sleep 20

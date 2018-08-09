@@ -46,15 +46,16 @@ function newPipelineBuild {
     oc new-build -e CLUSTER=${CLUSTER} -e GUID=${GUID} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJ} --name=${1}
     oc env bc/${1} CLUSTER=$CLUSTER GUID=$GUID -n ${PROJ}
 }
+
 newPipelineBuild mlbparks-pipeline MLBParks
 newPipelineBuild nationalparks-pipeline Nationalparks
 newPipelineBuild parksmap-pipeline ParksMap
 
 echo ">>> STEP #4 -- +ADD PERMISSIONS TO JENKINS"
-oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:default -n ${GUID}-parks-dev
-oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:default -n ${GUID}-parks-prod
-oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:jenkins -n ${GUID}-parks-dev
-oc policy add-role-to-user edit system:serviceaccount:92b7-jenkins:jenkins -n ${GUID}-parks-prod
+oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:default -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:default -n ${GUID}-parks-prod
+oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-dev
+oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
 
 echo ">>> STEP #5 -- JENKINS LIVENESS CHECK"
 oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJ}

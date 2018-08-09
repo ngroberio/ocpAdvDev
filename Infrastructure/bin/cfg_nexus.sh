@@ -18,6 +18,8 @@ function add_nexus3_npmproxy_repo() {
   local _NEXUS_PWD=$4
   local _NEXUS_URL=$5
 
+  echo ">>> ADD NEXUS3 NPM PROXY REPO REPO_ID:${_REPO_ID}, REPO_URL:${_REPO_URL}, NEXUS_USER:${_NEXUS_USER}, NEXUS_PWD:${_NEXUS_PWD}, NEXUS_URL:${_NEXUS_URL}"
+
   read -r -d '' _REPO_JSON << EOM
 {
   "name": "$_REPO_ID",
@@ -41,6 +43,8 @@ function add_nexus3_proxy_repo() {
   local _NEXUS_PWD=$4
   local _NEXUS_URL=$5
 
+echo ">>> ADD NEXUS3 PROXY REPO REPO_ID:${_REPO_ID}, REPO_URL:${_REPO_URL}, NEXUS_USER:${_NEXUS_USER}, NEXUS_PWD:${_NEXUS_PWD}, NEXUS_URL:${_NEXUS_URL}"
+
   read -r -d '' _REPO_JSON << EOM
 {
   "name": "$_REPO_ID",
@@ -62,6 +66,8 @@ function add_nexus3_release_repo() {
   local _NEXUS_USER=$2
   local _NEXUS_PWD=$3
   local _NEXUS_URL=$4
+
+echo ">>> ADD NEXUS3 RELEASE REPO REPO_ID:${_REPO_ID}, NEXUS_USER:${_NEXUS_USER}, NEXUS_PWD:${_NEXUS_PWD}, NEXUS_URL:${_NEXUS_URL}"
 
   # Repository createMavenHosted(final String name,
   #                                final String blobStoreName,
@@ -92,7 +98,10 @@ function add_nexus3_group_proxy_repo() {
   local _NEXUS_PWD=$4
   local _NEXUS_URL=$5
 
+  echo ">>> ADD NEXUS3 GROUP PROXY REPO REPO_IDS:${_REPO_IDS}, GROUP_ID:${_GROUP_ID}, NEXUS_USER:${_NEXUS_USER}, NEXUS_PWD:${_NEXUS_PWD}, NEXUS_URL:${_NEXUS_URL}"
+
   read -r -d '' _REPO_JSON << EOM
+
 {
   "name": "$_GROUP_ID",
   "type": "groovy",
@@ -114,6 +123,8 @@ function add_nexus3_docker_repo() {
   local _NEXUS_USER=$3
   local _NEXUS_PWD=$4
   local _NEXUS_URL=$5
+
+  echo ">>> ADD NEXUS3 DOCKER REPO REPO_ID:${_REPO_ID}, REPO_PORT:${_REPO_PORT}, NEXUS_USER:${_NEXUS_USER}, NEXUS_PWD:${_NEXUS_PWD}, NEXUS_URL:${_NEXUS_URL}"
 
   read -r -d '' _REPO_JSON << EOM
 {

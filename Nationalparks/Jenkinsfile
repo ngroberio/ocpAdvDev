@@ -20,7 +20,7 @@ podTemplate(
     // You need to build the application in directory `Nationalparks`.
     // Also copy "../nexus_settings.xml" to your build directory
     // and replace 'GUID' in the file with your ${GUID} to point to >your< Nexus instance
-    
+
     def name="nationalparks"
     def projectFolder="./Nationalparks"
     def targetFile="${name}.jar"
@@ -32,10 +32,10 @@ podTemplate(
       sh "mvn -s nexus_settings.xml -f ${projectFolder} clean package -DskipTests=true"
       echo "<<< BUILD DONE"
     }
-    
+
     stage("UNIT TESTS"){
       echo ">>> START UNIT TESTS"
-      sh "mvn -s nexus_settings.xml -f ${projectFolder} test "
+      sh "mvn -s nexus_settings.xml -f ${projectFolder} test"
       echo "<<< UNIT TESTS DONE"
     }
 
@@ -54,45 +54,45 @@ podTemplate(
     def version    = getVersionFromPom(pomPath)
     def artifactId = getArtifactIdFromPom(pomPath)
     def groupId    = getGroupIdFromPom(pomPath)
-    
+
     def devTag  = "${version}-${BUILD_NUMBER}"
     def prodTag = "${version}"
-    
+
     def jarPath="${projectFolder}/target/${targetFile}"
-    def pomPath="${projectFolder}/pom.xml"  
-    
+    def pomPath="${projectFolder}/pom.xml"
+
     stage("DEPLOY TO DEV"){
       echo ">>> DEV START DEPLOY"
-      
+
       echo ">>> DEV START BUILD"
       sh "oc start-build ${name} --from-file=${jarPath} -F -n ${GUID}-parks-dev"
-      
+
       echo ">>> DEV TAGGING"
       sh "oc tag ${GUID}-parks-dev/${name}:latest ${GUID}-parks-dev/${name}:${devTag} -n ${GUID}-parks-dev"
-      
+
       echo ">>> DEV SET IMAGE"
       sh "oc set image dc/${name} ${name}=${name}:${devTag} --source=istag -n ${GUID}-parks-dev"
-      
+
       echo ">>> DEV ROLLOUT LATEST"
       sh "oc rollout latest ${name} -n ${GUID}-parks-dev"
       echo "<<< DEV DEPLOY DONE"
     }
-    
+
     stage("POST DEV DEPLOYMENT"){
       echo ">>> DEV DEPLOYMENT FINISHED CHECK"
       sh " ./Infrastructure/bin/podLivenessCheck.sh ${name} ${GUID}-parks-dev"
       echo "<<< DEV DEPLOYMENT DONE"
-      
+
       echo ">>> IMG CP TO NEXUS REGISTRY"
       def token=readFile ('/var/run/secrets/kubernetes.io/serviceaccount/token')
       sh "skopeo copy --src-tls-verify=false --dest-tls-verify=false --src-creds=default:${token} --dest-creds=admin:admin123 docker://docker-registry.default.svc:5000/${GUID}-parks-dev/${name}:${devTag} docker://nexus-docker.${GUID}-nexus.svc:5000/${GUID}-parks/dev/${name}:${devTag}"
       echo "<<< IMG CP DONE"
     }
 
-    def currentTarget 
+    def currentTarget
     def newTarget
     stage("DEPLOY TO PROD"){
-      def isCurrentGreen  
+      def isCurrentGreen
       echo ">>> CHECK FOR TARGETS"
       currentTarget = sh returnStdout: true, script:"oc get route/${name} -n ${GUID}-parks-prod --template=\"{{.spec.to.name}}\""
       echo "<<< CURRENT TARGET DETECTED ${currentTarget}"
@@ -101,7 +101,7 @@ podTemplate(
       isCurrentGreen=currentTarget.contains("blue")
       newTarget= isCurrentGreen?"${name}-green":"${name}-blue"
       echo "<<< CURRENT COLOR DETECTED ${newTarget}"
-      
+
       echo ">>> DEPLOY TO TARGET: ${newTarget}"
       sh "oc tag ${GUID}-parks-dev/${name}:${devTag} ${GUID}-parks-prod/${name}:${prodTag} -n ${GUID}-parks-prod"
       sh "oc set image dc/${newTarget} ${name}=${name}:${prodTag} --source=istag -n ${GUID}-parks-prod"

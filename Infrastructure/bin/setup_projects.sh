@@ -37,6 +37,7 @@ oc new-project ${GUID}-parks-dev  --display-name="${GUID} AdvDev Homework Parks 
 oc new-project ${GUID}-nexus        --display-name="${GUID} AdvDev Homework Nexus"
 oc new-project ${GUID}-sonarqube    --display-name="${GUID} AdvDev Homework Sonarqube"
 oc new-project ${GUID}-jenkins    --display-name="${GUID} AdvDev Homework Jenkins"
+oc project $GUID-parks-dev
 
 echo ">>> ADD ADMIN POLICIES FOR USER=${USER}"
 oc policy add-role-to-user admin ${USER} -n ${GUID}-parks-prod

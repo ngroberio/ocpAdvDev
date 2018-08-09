@@ -18,8 +18,8 @@ echo "Setting up Parks Production Environment in project ${GUID}-parks-prod"
 # The Green services/routes need to be active initially to guarantee a successful grading pipeline run.
 
 PROJ=${GUID}-parks-prod
-MONGO_TMPL=./Infrastructure/templates/mongo-rs.yaml
-APPS_TMPL=./Infrastructure/templates/prod_apps.yaml
+MONGO_TMPL=./Infrastructure/templates/mongors_setup_template.yaml
+APPS_TMPL=./Infrastructure/templates/prod_setup_template.yaml
 
 echo ">>> STEP #1 > SET MONGODB REPLICAS"
 oc create -f $MONGO_TMPL -n $PROJ

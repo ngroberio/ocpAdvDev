@@ -29,7 +29,7 @@ echo "Setting up Nexus in project $GUID-nexus"
 # oc new-app -f ../templates/nexus.yaml --param .....
 
 # To be Implemented by Student
-TMPL=./Infrastructure/templates/nexus.yaml
+TMPL=./Infrastructure/templates/nexus_setup_template.yaml
 PROJ=$GUID-nexus
 
 echo ">> STETP 1 >>>> Setting up Nexus"

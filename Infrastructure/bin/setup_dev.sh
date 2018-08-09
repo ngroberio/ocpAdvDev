@@ -13,8 +13,8 @@ echo "Setting up Parks Development Environment in project ${GUID}-parks-dev"
 
 # To be Implemented by Student
 PROJ=${GUID}-parks-dev
-MONGO_TMPL=./Infrastructure/templates/mongo.yaml
-APPS_TMPL=./Infrastructure/templates/dev_apps.yaml
+MONGO_TMPL=./Infrastructure/templates/mongodb_template.yaml
+APPS_TMPL=./Infrastructure/templates/dev_setup_template.yaml
 
 echo ">>> STEP #1 > CREATE MONGODB"
 oc create -f $MONGO_TMPL -n $PROJ

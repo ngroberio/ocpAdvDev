@@ -29,7 +29,7 @@ echo "Setting up Jenkins in project ${GUID}-jenkins from Git Repo ${REPO} for Cl
 # To be Implemented by Student
 PROJ=${GUID}-jenkins
 SKOPEO_DOCKERFILE=./Infrastructure/skopeo/Dockerfile
-JENKINS=./Infrastructure/templates/jenkins.yaml
+JENKINS=./Infrastructure/templates/jenkins_setup_template.yaml
 
 echo ">>> STEP #2 -- CREATE IMAGE FOR SKOPEO"
 

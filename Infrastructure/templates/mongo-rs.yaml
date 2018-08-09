@@ -6,7 +6,7 @@ items:
 - kind: Secret
   apiVersion: v1
   data:
-    database-admin-password: aG9tZXdyb2tNb25nb0RiUHdk
+    database-admin-password: W9uZ29BZG1pbg==
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==

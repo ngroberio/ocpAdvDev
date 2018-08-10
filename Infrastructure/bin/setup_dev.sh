@@ -21,6 +21,7 @@ PARKS_TMPL=./Infrastructure/templates/dev_setup_parksmap_template.yaml
 
 echo ">>> STEP #1 > CREATE MONGODB"
 oc create -f $MONGO_TMPL -n $PROJECT_NAME
+sleep 15
 
 ./Infrastructure/bin/podLivenessCheck.sh mongodb $PROJECT_NAME
 

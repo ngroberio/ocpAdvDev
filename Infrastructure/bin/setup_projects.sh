@@ -21,7 +21,7 @@ oc new-project ${GUID}-nexus        --display-name="${GUID} AdvDev Homework Nexu
 oc new-project ${GUID}-sonarqube    --display-name="${GUID} AdvDev Homework Sonarqube"
 oc new-project ${GUID}-jenkins    --display-name="${GUID} AdvDev Homework Jenkins"
 
-sleep 10
+sleep 15
 
 echo ">>> ADD ADMIN POLICIES FOR USER=${USER}"
 oc policy add-role-to-user admin ${USER} -n ${GUID}-parks-prod
@@ -37,4 +37,4 @@ oc annotate namespace ${GUID}-jenkins    openshift.io/requester=${USER} --overwr
 oc annotate namespace ${GUID}-nexus      openshift.io/requester=${USER} --overwrite
 oc annotate namespace ${GUID}-sonarqube  openshift.io/requester=${USER} --overwrite
 
-sleep 20
+sleep 30

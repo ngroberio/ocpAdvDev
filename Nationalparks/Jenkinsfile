@@ -25,15 +25,15 @@ podTemplate(
     def projectFolder="./Nationalparks"
     def targetFile="${name}.jar"
 
+    def jarPath="${projectFolder}/target/${targetFile}"
+    def pomPath="${projectFolder}/pom.xml"
+
     def version    = getVersionFromPom(pomPath)
     def artifactId = getArtifactIdFromPom(pomPath)
     def groupId    = getGroupIdFromPom(pomPath)
 
     def devTag  = "${version}-${BUILD_NUMBER}"
     def prodTag = "${version}"
-
-    def jarPath="${projectFolder}/target/${targetFile}"
-    def pomPath="${projectFolder}/pom.xml"
 
     stage("BUILD PROJECT"){
       echo ">>> CHECKOUT PROJECT"

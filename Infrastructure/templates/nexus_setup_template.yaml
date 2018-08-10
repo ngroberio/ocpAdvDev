@@ -48,11 +48,11 @@ objects:
               port: 8081
           resources:
             limits:
+              cpu: 3
+              memory: 3Gi
+            requests:
               cpu: 2
               memory: 2Gi
-            requests:
-              cpu: 1
-              memory: 1Gi
           volumeMounts:
           - mountPath: /nexus-data
             name: nexus

@@ -24,7 +24,7 @@ items:
     strategy:
       activeDeadlineSeconds: 21600
       recreateParams:
-        timeoutSeconds: 600
+        timeoutSeconds: 800
       resources: {}
       type: Recreate
     template:

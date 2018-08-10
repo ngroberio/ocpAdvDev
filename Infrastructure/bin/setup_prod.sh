@@ -19,7 +19,9 @@ echo "Setting up Parks Production Environment in project ${GUID}-parks-prod"
 
 PROJECT_NAME=${GUID}-parks-prod
 MONGO_TMPL=./Infrastructure/templates/mongors_setup_template.yaml
-APPS_TMPL=./Infrastructure/templates/prod_setup_template.yaml
+MLB_TMPL=./Infrastructure/templates/prod_setup_mlbparks_template.yaml
+NATIONAL_TMPL=./Infrastructure/templates/prod_setup_nationalparks_template.yaml
+PARKS_TMPL=./Infrastructure/templates/prod_setup_parksmap_template.yaml
 
 echo ">>> STEP #1 > SET MONGODB REPLICAS"
 oc create -f $MONGO_TMPL -n $PROJECT_NAME
@@ -30,7 +32,14 @@ oc create -f $MONGO_TMPL -n $PROJECT_NAME
 
 echo ">>> STEP #2 > SET APPS FOR PROD"
 
-oc create -f $APPS_TMPL -n $PROJECT_NAME
+oc create -f $MLB_TMPL -n $PROJECT_NAME
+sleep 10
+
+oc create -f $NATIONAL_TMPL -n $PROJECT_NAME
+sleep 10
+
+oc create -f $PARKS_TMPL -n $PROJECT_NAME
+sleep 10
 
 echo ">>> STEP #3 > ADD VIEW PERMISSIONS"
 oc policy add-role-to-group view system:serviceaccount:${GUID}-parks-prod -n ${GUID}-parks-dev

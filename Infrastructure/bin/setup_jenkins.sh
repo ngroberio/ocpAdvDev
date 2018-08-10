@@ -27,23 +27,23 @@ echo "Setting up Jenkins in project ${GUID}-jenkins from Git Repo ${REPO} for Cl
 # * CLUSTER: the base url of the cluster used (e.g. na39.openshift.opentlc.com)
 
 # To be Implemented by Student
-PROJ=${GUID}-jenkins
+PROJECT_NAME=${GUID}-jenkins
 SKOPEO_DOCKERFILE=./Infrastructure/skopeo/Dockerfile
 JENKINS=./Infrastructure/templates/jenkins_setup_template.yaml
 
 echo ">>> STEP #2 -- CREATE IMAGE FOR SKOPEO"
 
-cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJ} -D -
+cat $SKOPEO_DOCKERFILE |  oc new-build --strategy=docker --to=jenkins-slave-appdev --name=skopeo -n ${PROJECT_NAME} -D -
 echo ">> CONFIG CREATED. WAIT FOR IMAGE BUILD"
 sleep 10
-oc logs -f bc/skopeo -n ${PROJ}
+oc logs -f bc/skopeo -n ${PROJECT_NAME}
 
 echo ">>> STEP #3 -- PIPELINES CREATION"
 
 function newPipelineBuild {
     echo ">>> SETUP PIPELINES: ${1} -- DIR: ${2}"
-    oc new-build -e GUID=${GUID} -e CLUSTER=${CLUSTER} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJ} --name=${1}
-    oc env bc/${1} GUID=$GUID CLUSTER=$CLUSTER -n ${PROJ}
+    oc new-build -e GUID=${GUID} -e CLUSTER=${CLUSTER} --strategy=pipeline ${REPO} --context-dir=${2} -n ${PROJECT_NAME} --name=${1}
+    oc env bc/${1} GUID=$GUID CLUSTER=$CLUSTER -n ${PROJECT_NAME}
 }
 newPipelineBuild mlbparks-pipeline MLBParks
 newPipelineBuild nationalparks-pipeline Nationalparks
@@ -55,11 +55,11 @@ oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:default -n
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-dev
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
 
-echo ">>> STEP #5 -- JENKINS LIVENESS CHECK FOR PROJ: ${PROJ}"
-oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJ}
-./Infrastructure/bin/podLivenessCheck.sh jenkins ${PROJ}
-oc cancel-build -n $PROJ bc/mlbparks-pipeline
-oc cancel-build -n $PROJ bc/nationalparks-pipeline
-oc cancel-build -n $PROJ bc/parksmap-pipeline
+echo ">>> STEP #5 -- JENKINS LIVENESS CHECK FOR PROJECT_NAME: ${PROJECT_NAME}"
+oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJECT_NAME}
+./Infrastructure/bin/podLivenessCheck.sh jenkins ${PROJECT_NAME}
+oc cancel-build -n $PROJECT_NAME bc/mlbparks-pipeline
+oc cancel-build -n $PROJECT_NAME bc/nationalparks-pipeline
+oc cancel-build -n $PROJECT_NAME bc/parksmap-pipeline
 
 sleep 20

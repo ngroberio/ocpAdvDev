@@ -107,9 +107,9 @@ objects:
     - ReadWriteOnce
     resources:
       limits:
-        storage: 5Gi
-      requests:
         storage: 4Gi
+      requests:
+        storage: 3Gi
 - kind: Route
   apiVersion: v1
   metadata:

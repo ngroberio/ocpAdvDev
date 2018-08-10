@@ -7,10 +7,15 @@ if [ "$#" -ne 1 ]; then
 fi
 
 GUID=$1
-echo "Removing all Homework Projects for GUID=$GUID"
-oc delete project $GUID-nexus
-oc delete project $GUID-sonarqube
-oc delete project $GUID-jenkins
-oc delete project $GUID-parks-dev
-oc delete project $GUID-parks-prod
+echo ">>> REMOVE ALL HOMEWORK PROJECTS FOR GUID=$GUID"
+
+projects=$(oc get projects --output=jsonpath={.items..metadata.name})
+for project in $projects; do
+  if [[ $project == $GUID* ]]; then
+    echo ">>>> DELETING PROJECT $project"
+      oc delete project $project
+    echo "<<<< PROJECT $project DELETED"
+  fi
+done
+
 sleep 20

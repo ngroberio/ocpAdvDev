@@ -1,10 +1,10 @@
 #!/bin/bash
-echo ">> Liveness Check for Pod ${1} from Project ${2}"
+echo ">>> LIVENESS CHECK FOR POD ${1} TO PROJECT ${2}"
 sleep 20
 while : ; do
-  echo ">> Check Pod ${1} is Ready..."
+  echo ">>> CHECK IF POD: ${1} IS ALIVE."
   oc get pod -n $2 | grep $1 | grep -v build | grep -v deploy |grep "1/1.*Running"
   [[ "$?" == "1" ]] || break
-  echo "...no. Sleeping 7 seconds."
-  sleep 7
+  echo "<<< NOT YET :( >>>>> WAITING MORE 1O SECONDS AND TRY AGAIN."
+  sleep 10
 done

@@ -71,10 +71,10 @@ items:
             timeoutSeconds: 240
           resources:
             limits:
-              cpu: "3"
+              cpu: "1"
               memory: 3Gi
             requests:
-              cpu: "3"
+              cpu: "1"
               memory: 3Gi
           securityContext:
             capabilities: {}

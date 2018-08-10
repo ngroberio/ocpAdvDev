@@ -48,10 +48,10 @@ objects:
               port: 8081
           resources:
             limits:
-              cpu: 3
-              memory: 3Gi
+              cpu: 1
+              memory: 2Gi
             requests:
-              cpu: 2
+              cpu: 1
               memory: 2Gi
           volumeMounts:
           - mountPath: /nexus-data
@@ -107,7 +107,7 @@ objects:
     - ReadWriteOnce
     resources:
       limits:
-        storage: 4Gi
+        storage: 3Gi
       requests:
         storage: 3Gi
 - kind: Route

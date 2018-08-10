@@ -18,4 +18,4 @@ for project in $projects; do
   fi
 done
 
-sleep 20
+sleep 60

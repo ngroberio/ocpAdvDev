@@ -25,7 +25,7 @@ PARKS_TMPL=./Infrastructure/templates/prod_setup_parksmap_template.yaml
 
 echo ">>> STEP #1 > SET MONGODB REPLICAS"
 oc create -f $MONGO_TMPL -n $PROJECT_NAME
-slee 15
+sleep 15
 
 ./Infrastructure/bin/podLivenessCheck.sh mongodb-0 $PROJECT_NAME
 ./Infrastructure/bin/podLivenessCheck.sh mongodb-1 $PROJECT_NAME

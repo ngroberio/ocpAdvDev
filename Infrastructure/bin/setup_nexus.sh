@@ -40,5 +40,7 @@ oc process -f $TEMPLATE | oc create -n $PROJ_NAME -f -
 echo ">> STEP 2 >>>> Configuring Nexus"
 ROUTE=$(oc get route nexus3 --template='{{ .spec.host }}' -n ${PROJ_NAME})
 echo ">>> Route ${ROUTE}"
-sleep 70
+
+sleep 10
+
 ./Infrastructure/bin/cfg_nexus.sh admin admin123 http://${ROUTE}

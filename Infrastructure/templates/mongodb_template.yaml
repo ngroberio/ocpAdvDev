@@ -16,7 +16,7 @@ items:
 - kind: Secret
   apiVersion: v1
   data:
-    database-admin-password: bW9uZ29EYkFkbQ==
+    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==
@@ -149,3 +149,16 @@ items:
     selector:
       name: mongodb
     type: ClusterIP
+parameters:
+- description: GENERATED MONGO ADM PWD
+  displayName: MONG DB RANDOM ADM PWD
+  name: MONGODB_ADMIN_PASSWORD
+  required: true
+  from: "[a-zA-Z0-9]{16}"
+  generate: expression
+- description: GENERATED MONGO KF VALUE
+  displayName: GENERATED MONGO KF VALUE
+  name: MONGODB_KEYFILE_VALUE
+  required: true
+  from: "[a-zA-Z0-9]{16}"
+  generate: expression

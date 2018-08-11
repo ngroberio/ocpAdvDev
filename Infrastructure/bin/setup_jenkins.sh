@@ -56,7 +56,7 @@ oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n
 oc policy add-role-to-user edit system:serviceaccount:${GUID}-jenkins:jenkins -n ${GUID}-parks-prod
 
 echo ">>> STEP #5 -- JENKINS LIVENESS CHECK FOR PROJECT_NAME: ${PROJECT_NAME}"
-oc set resources dc/jenkins --requests=cpu=1,memory=1Gi --limits=cpu=2,memory=2Gi -n ${PROJECT_NAME}
+oc set resources dc/jenkins --requests=cpu=2,memory=2Gi --limits=cpu=3,memory=3Gi -n ${PROJECT_NAME}
 ./Infrastructure/bin/podLivenessCheck.sh jenkins ${PROJECT_NAME}
 oc cancel-build -n $PROJECT_NAME bc/mlbparks-pipeline
 oc cancel-build -n $PROJECT_NAME bc/nationalparks-pipeline

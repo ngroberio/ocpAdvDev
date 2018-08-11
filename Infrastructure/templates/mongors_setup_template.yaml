@@ -56,9 +56,7 @@ items:
         containers:
         - env:
           - name: MONGODB_KEYFILE_VALUE
-            required: true
-            from: "[a-zA-Z0-9]{16}"
-            generate: expression
+            value: "zzh5n3op242xgzDgwWAcXbjMupnqiR8U"
           - name: MONGODB_REPLICA_NAME
             value: "rs0"
           - name: MONGODB_SERVICE_NAME

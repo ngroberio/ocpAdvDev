@@ -17,7 +17,7 @@ items:
   apiVersion: v1
   stringData:
     database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
-  data:    
+  data:
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==

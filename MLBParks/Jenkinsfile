@@ -25,16 +25,6 @@ podTemplate(
     def projectFolder="./MLBParks"
     def targetFile="${name}.war"
 
-    def jarPath="${projectFolder}/target/${targetFile}"
-    def pomPath="${projectFolder}/pom.xml"
-
-    def version    = getVersionFromPom(pomPath)
-    def groupId    = getGroupIdFromPom(pomPath)
-    def artifactId = getArtifactIdFromPom(pomPath)
-
-    def devTag  = "${version}-${BUILD_NUMBER}"
-    def prodTag = "${version}"
-
     stage("BUILD PROJECT"){
       echo ">>> CHECKOUT PROJECT"
       checkout scm
@@ -65,6 +55,16 @@ podTemplate(
       sh "mvn -s nexus_settings.xml deploy -f ${projectFolder} -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-${GUID}-nexus.apps.${CLUSTER}/repository/releases"
       echo "<<< PUSH TO NEXUS DONE"
     }
+
+    def jarPath="${projectFolder}/target/${targetFile}"
+    def pomPath="${projectFolder}/pom.xml"
+
+    def version    = getVersionFromPom(pomPath)
+    def groupId    = getGroupIdFromPom(pomPath)
+    def artifactId = getArtifactIdFromPom(pomPath)
+
+    def devTag  = "${version}-${BUILD_NUMBER}"
+    def prodTag = "${version}"
 
     stage("DEPLOY TO DEV"){
       echo ">>> DEV START DEPLOY"

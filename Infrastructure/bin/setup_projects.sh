@@ -9,11 +9,6 @@ fi
 GUID=$1
 USER=$2
 
-echo ">>> CLEANUP ALL GUID $1 PROJECTS BEFORE START"
-./Infrastructure/bin/cleanup.sh $1
-
-sleep 30
-
 echo ">>> CREATING ALL HOMEWORK PROJECTS FOR GUID=${GUID} AND USER=${USER}"
 oc new-project ${GUID}-parks-prod --display-name="${GUID} AdvDev Homework Parks Production"
 oc new-project ${GUID}-parks-dev  --display-name="${GUID} AdvDev Homework Parks Development"

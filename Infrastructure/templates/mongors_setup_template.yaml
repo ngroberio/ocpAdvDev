@@ -19,8 +19,8 @@ items:
       name: mongodb
     name: mongodb
   stringData:
-    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
-    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
+    database-admin-password: "${MONGODB_ADMIN_PASSWORD_PARAM}"
+    database-keyfile-value: "SAMPLEKEYFILEVALUE"
   type: Opaque
 - kind: Service
   apiVersion: v1
@@ -148,13 +148,13 @@ items:
 parameters:
 - description: GENERATED MONGO ADM PWD
   displayName: MONG DB RANDOM ADM PWD
-  name: MONGODB_ADMIN_PASSWORD
+  name: MONGODB_ADMIN_PASSWORD_PARAM
   required: true
   from: "[a-zA-Z0-9]{16}"
   generate: expression
 - description: GENERATED MONGO KF VALUE
   displayName: GENERATED MONGO KF VALUE
-  name: MONGODB_KEYFILE_VALUE
+  name: MONGODB_KEYFILE_PARAM_VALUE
   required: true
   from: "[a-zA-Z0-9]{16}"
   generate: expression

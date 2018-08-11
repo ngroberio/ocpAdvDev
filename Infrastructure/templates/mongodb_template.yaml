@@ -15,8 +15,6 @@ items:
         storage: 4Gi
 - kind: Secret
   apiVersion: v1
-  stringData:
-    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
   data:
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
@@ -31,6 +29,8 @@ items:
     labels:
       name: mongodb
     name: mongodb
+  stringData:
+    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
   type: Opaque
 - kind: DeploymentConfig
   apiVersion: v1

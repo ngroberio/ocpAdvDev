@@ -7,9 +7,6 @@ items:
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==
-  stringData:
-    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
-    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
   metadata:
     annotations:
       template.openshift.io/expose-admin_password: '{.data[''database-admin-password'']}'
@@ -21,6 +18,9 @@ items:
     labels:
       name: mongodb
     name: mongodb
+  stringData:
+    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
+    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
   type: Opaque
 - kind: Service
   apiVersion: v1
@@ -158,4 +158,3 @@ parameters:
   required: true
   from: "[a-zA-Z0-9]{16}"
   generate: expression
-  

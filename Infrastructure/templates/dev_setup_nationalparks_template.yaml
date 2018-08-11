@@ -16,9 +16,9 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 512Mi
+          memory: 128Mi
         limits:
-          memory: 512Mi
+          memory: 128Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%

@@ -29,7 +29,7 @@ podTemplate(
       echo ">>> CHECKOUT PROJECT"
       checkout scm
       echo ">>> START BUILD"
-      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean install -DskipTests=true"
+      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean package -DskipTests=true"
       echo "<<< BUILD DONE"
     }
 
@@ -58,6 +58,7 @@ podTemplate(
 
     def jarPath="${projectFolder}/target/${targetFile}"
     def pomPath="${projectFolder}/pom.xml"
+    echo ">>> POM PATH: ${pomPath}"
 
     def version    = getVersionFromPom(pomPath)
     def artifactId = getArtifactIdFromPom(pomPath)

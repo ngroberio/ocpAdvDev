@@ -4,11 +4,12 @@ items:
 - kind: Secret
   apiVersion: v1
   data:
-    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
-    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==
+  stringData:
+    database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
+    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
   metadata:
     annotations:
       template.openshift.io/expose-admin_password: '{.data[''database-admin-password'']}'

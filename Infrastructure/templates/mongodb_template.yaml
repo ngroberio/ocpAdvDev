@@ -15,8 +15,9 @@ items:
         storage: 4Gi
 - kind: Secret
   apiVersion: v1
-  data:
+  stringData:
     database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
+  data:    
     database-name: cGFya3M=
     database-password: bW9uZ29kYg==
     database-user: bW9uZ29kYg==

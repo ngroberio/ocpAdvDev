@@ -39,7 +39,7 @@ podTemplate(
       echo ">>> CHECKOUT PROJECT"
       checkout scm
       echo ">>> START BUILD"
-      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean package -DskipTests=true"
+      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean install -DskipTests=true"
       echo "<<< BUILD DONE"
     }
 

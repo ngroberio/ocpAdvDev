@@ -25,11 +25,21 @@ podTemplate(
     def projectFolder="./ParksMap"
     def targetFile="${name}.jar"
 
+    def jarPath="${projectFolder}/target/${targetFile}"
+    def pomPath="${projectFolder}/pom.xml"
+
+    def version    = getVersionFromPom(pomPath)
+    def artifactId = getArtifactIdFromPom(pomPath)
+    def groupId    = getGroupIdFromPom(pomPath)
+
+    def devTag  = "${version}-${BUILD_NUMBER}"
+    def prodTag = "${version}"
+    
     stage("BUILD PROJECT"){
       echo ">>> CHECKOUT PROJECT"
       checkout scm
       echo ">>> START BUILD"
-      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean package -DskipTests=true"
+      sh "mvn -s nexus_settings.xml -f ${projectFolder} clean install -DskipTests=true"
       echo "<<< BUILD DONE"
     }
 
@@ -55,16 +65,6 @@ podTemplate(
       sh "mvn -s nexus_settings.xml -f ${projectFolder} deploy -DskipTests=true -DaltDeploymentRepository=nexus::default::http://nexus3-${GUID}-nexus.apps.${CLUSTER}/repository/releases"
       echo "<<< PUSH TO NEXUS DONE"
     }
-
-    def jarPath="${projectFolder}/target/${targetFile}"
-    def pomPath="${projectFolder}/pom.xml"
-
-    def version    = getVersionFromPom(pomPath)
-    def artifactId = getArtifactIdFromPom(pomPath)
-    def groupId    = getGroupIdFromPom(pomPath)
-
-    def devTag  = "${version}-${BUILD_NUMBER}"
-    def prodTag = "${version}"
 
     stage("DEPLOY TO DEV"){
       echo ">>> DEV START DEPLOY"

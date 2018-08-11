@@ -22,6 +22,7 @@ items:
   metadata:
     annotations:
       template.openshift.io/expose-admin_password: '{.data[''database-admin-password'']}'
+      template.openshift.io/expose-keyfile_value: '{.data[''database-keyfile-value'']}'
       template.openshift.io/expose-database_name: '{.data[''database-name'']}'
       template.openshift.io/expose-password: '{.data[''database-password'']}'
       template.openshift.io/expose-username: '{.data[''database-user'']}'
@@ -31,6 +32,7 @@ items:
     name: mongodb
   stringData:
     database-admin-password: "${MONGODB_ADMIN_PASSWORD}"
+    database-keyfile-value: "${MONGODB_KEYFILE_VALUE}"
   type: Opaque
 - kind: DeploymentConfig
   apiVersion: v1
@@ -154,6 +156,12 @@ parameters:
 - description: GENERATED MONGO ADM PWD
   displayName: MONG DB RANDOM ADM PWD
   name: MONGODB_ADMIN_PASSWORD
+  required: true
+  from: "[a-zA-Z0-9]{16}"
+  generate: expression
+- description: GENERATED MONGO KF VALUE
+  displayName: GENERATED MONGO KF VALUE
+  name: MONGODB_KEYFILE_VALUE
   required: true
   from: "[a-zA-Z0-9]{16}"
   generate: expression

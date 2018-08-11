@@ -10,7 +10,7 @@ items:
   metadata:
     annotations:
       template.openshift.io/expose-admin_password: '{.data[''database-admin-password'']}'
-      template.openshift.io/expose-keyfile_password: '{.data[''database-keyfile-value'']}'
+      template.openshift.io/expose-keyfile_value: '{.data[''database-keyfile-value'']}'
       template.openshift.io/expose-database_name: '{.data[''database-name'']}'
       template.openshift.io/expose-password: '{.data[''database-password'']}'
       template.openshift.io/expose-username: '{.data[''database-user'']}'

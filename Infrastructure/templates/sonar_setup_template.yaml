@@ -174,7 +174,7 @@ items:
           resources:
             limits:
               memory: 4Gi
-              cpu: 3
+              cpu: 1
           livenessProbe:
             failureThreshold: 3
             httpGet:

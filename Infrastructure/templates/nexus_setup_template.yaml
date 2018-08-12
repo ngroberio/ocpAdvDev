@@ -48,7 +48,7 @@ objects:
               port: 8081
           resources:
             limits:
-              cpu: 2
+              cpu: 1
               memory: 2Gi
             requests:
               cpu: 500m

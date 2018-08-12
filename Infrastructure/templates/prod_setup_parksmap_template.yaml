@@ -105,7 +105,7 @@ items:
       resources:
         requests:
           memory: 512Mi
-          cpu: 250m
+          cpu: 150m
         limits:
           memory: 512Mi
           cpu: 250m

@@ -104,13 +104,7 @@ items:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 400m
-              memory: 1Gi
-            requests:
-              cpu: 300m
-              memory: 256Mi
+          resources:        
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:

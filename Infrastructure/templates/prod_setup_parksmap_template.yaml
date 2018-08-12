@@ -18,7 +18,7 @@ items:
       resources:
         requests:
           memory: 128Mi
-          cpu: 70m
+          cpu: 100m
         limits:
           memory: 256Mi
           cpu: 130m
@@ -104,7 +104,7 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 512Mi
+          memory: 256Mi
           cpu: 150m
         limits:
           memory: 512Mi
@@ -113,7 +113,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 700
+        timeoutSeconds: 900
         updatePeriodSeconds: 1
       type: Rolling
     template:

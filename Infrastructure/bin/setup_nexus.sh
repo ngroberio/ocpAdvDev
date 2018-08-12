@@ -35,13 +35,7 @@ PROJ_NAME=$GUID-nexus
 echo ">> STETP 1 >>>> Setting up Nexus"
 oc process -f $TEMPLATE | oc create -n $PROJ_NAME -f -
 
-while : ; do
-  echo ">>> NEXUS LIVENESS CHECK:"
-  oc get pod -n ${PROJ_NAME} | grep -v deploy |grep "1/1.*Running"
-  [[ "$?" == "1" ]] || break
-  echo "<<< NOT YET :( >>>>> WAITING MORE 1O SECONDS AND TRY AGAIN."
-  sleep 10
-done
+./Infrastructure/bin/nexusLivenessCheck.sh ${PROJ_NAME}
 
 echo ">> STEP 2 >>>> Configuring Nexus"
 ROUTE=$(oc get route nexus3 --template='{{ .spec.host }}' -n ${PROJ_NAME})

@@ -18,12 +18,12 @@ items:
         requests:
           memory: 128Mi
         limits:
-          memory: 128Mi
+          memory: 256Mi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 850
+        timeoutSeconds: 650
         updatePeriodSeconds: 1
       type: Rolling
     template:

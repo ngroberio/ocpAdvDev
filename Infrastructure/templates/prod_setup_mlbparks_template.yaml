@@ -309,3 +309,5 @@ items:
   spec:
     lookupPolicy:
       local: false
+kind: List
+metadata: {}

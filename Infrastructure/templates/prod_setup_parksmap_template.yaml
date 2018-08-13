@@ -26,7 +26,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 650
+        timeoutSeconds: 850
         updatePeriodSeconds: 1
       type: Rolling
     template:
@@ -113,7 +113,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 900
+        timeoutSeconds: 850
         updatePeriodSeconds: 1
       type: Rolling
     template:

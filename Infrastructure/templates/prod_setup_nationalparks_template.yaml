@@ -26,7 +26,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 850
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -117,7 +117,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 850
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore

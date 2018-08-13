@@ -17,16 +17,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 128Mi
-          cpu: 70m
-        limits:
           memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
           cpu: 150m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 850
+        timeoutSeconds: 600
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -108,16 +108,16 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 512Mi
-          cpu: 150m
+          memory: 256Mi
+          cpu: 100m
         limits:
-          memory: 512Mi
-          cpu: 250m
+          memory: 256Mi
+          cpu: 100m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 850
+        timeoutSeconds: 600
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -310,5 +310,3 @@ items:
   spec:
     lookupPolicy:
       local: false
-kind: List
-metadata: {}

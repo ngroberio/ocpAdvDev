@@ -18,10 +18,10 @@ items:
       resources:
         requests:
           memory: 256Mi
-          cpu: 100m
+          cpu: 150m
         limits:
           memory: 512Mi
-          cpu: 150m
+          cpu: 200m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%

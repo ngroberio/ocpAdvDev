@@ -124,6 +124,7 @@ podTemplate(
       echo ">>> EXECUTE B/G"
       sh "oc patch route/${name} -n ${GUID}-parks-prod -p '{\"spec\":{\"to\":{\"name\":\"${newTarget}\"}}}' "
       echo "<<< B/G SWAP DONE"
+      sleep 45
     }
 
   }

@@ -1,6 +1,5 @@
 apiVersion: v1
 items:
-# mlbparks
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -18,7 +17,7 @@ items:
       resources:
         requests:
           memory: 256Mi
-          cpu: 100m
+          cpu: 130m
         limits:
           memory: 512Mi
           cpu: 150m
@@ -26,7 +25,7 @@ items:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 750
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore
@@ -111,13 +110,13 @@ items:
           memory: 256Mi
           cpu: 100m
         limits:
-          memory: 256Mi
-          cpu: 100m
+          memory: 512Mi
+          cpu: 150m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
         maxUnavailable: 25%
-        timeoutSeconds: 600
+        timeoutSeconds: 750
         updatePeriodSeconds: 1
         post:
           failurePolicy: ignore

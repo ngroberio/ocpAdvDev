@@ -106,7 +106,7 @@ items:
       sourceStrategy:
         env:
         - name: MAVEN_MIRROR_URL
-          value: http://nexus3.9b56-nexus.svc.cluster.local:8081/repository/maven-all-public
+          value: http://nexus3.5414-nexus.svc.cluster.local:8081/repository/maven-all-public
         from:
           kind: ImageStreamTag
           name: redhat-openjdk18-openshift:1.2

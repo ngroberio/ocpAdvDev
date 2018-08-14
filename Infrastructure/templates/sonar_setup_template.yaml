@@ -60,7 +60,7 @@ items:
         limits:
           memory: 1512Mi
         requests:
-          memory: 512Mi
+          memory: 640Mi
       type: Recreate
     template:
       metadata:
@@ -118,7 +118,7 @@ items:
             timeoutSeconds: 1
           resources:
             limits:
-              memory: 1000Mi
+              memory: 1512Mi
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: postgresql-data
@@ -153,7 +153,7 @@ items:
         limits:
           memory: 1512Mi
         requests:
-          memory: 512Mi
+          memory: 640Mi
       type: Recreate
     template:
       metadata:
@@ -174,7 +174,7 @@ items:
           resources:
             limits:
               memory: 2Gi
-              cpu: 500m
+              cpu: 750m
           livenessProbe:
             failureThreshold: 3
             httpGet:

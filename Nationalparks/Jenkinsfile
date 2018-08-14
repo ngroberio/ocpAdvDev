@@ -125,7 +125,7 @@ podTemplate(
       echo ">>> EXECUTE B/G"
       sh "oc patch svc/${name} -n ${GUID}-parks-prod -p '{\"spec\":{\"selector\":{\"deploymentconfig\":\"${newTarget}\"}}}' "
       echo "<<< B/G SWAP DONE"
-      sleep 45
+      sleep 10
     }
 
 

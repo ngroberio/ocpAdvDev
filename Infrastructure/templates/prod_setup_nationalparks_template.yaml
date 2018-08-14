@@ -218,5 +218,96 @@ items:
   spec:
     lookupPolicy:
       local: false
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    labels:
+      app: nationalparks
+    name: nationalparks-green
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: nationalparks
+      deploymentconfig: nationalparks-green
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
+          cpu: 150m
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 800
+        updatePeriodSeconds: 1
+        post:
+          failurePolicy: ignore
+          execNewPod:
+            command: ["curl","http://nationalparks-green:8080/ws/data/load/"]
+            conatinerName: nationalparks
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: nationalparks
+          deploymentconfig: nationalparks-green
+      spec:
+        containers:
+        - image: nationalparks:0.0
+          imagePullPolicy: Always
+          name: nationalparks
+          env:
+          - name: APPNAME
+            value: National Parks (Green)
+          - name: DB_HOST
+            value: mongodb
+          - name: DB_PORT
+            value: "27017"
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: mongodb
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: mongodb
+          - name: DB_NAME
+            value: mongodb
+          - name: DB_REPLICASET
+            value: rs0
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          readinessProbe:
+            initialDelaySeconds: 60
+            httpGet:
+              path: /ws/info/
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 60
+            httpGet:
+              path: /ws/info/
+              port: 8080
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers: []
 kind: List
 metadata: {}

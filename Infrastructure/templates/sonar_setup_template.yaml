@@ -58,7 +58,7 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 1512Mi
+          memory: 1000Mi
         requests:
           memory: 512Mi
       type: Recreate
@@ -118,7 +118,7 @@ items:
             timeoutSeconds: 1
           resources:
             limits:
-              memory: 1512Mi
+              memory: 1000Mi
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: postgresql-data
@@ -151,7 +151,7 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 1512Mi
+          memory: 1000Mi
         requests:
           memory: 512Mi
       type: Recreate
@@ -173,7 +173,7 @@ items:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: 4Gi
+              memory: 3Gi
               cpu: 1
           livenessProbe:
             failureThreshold: 3

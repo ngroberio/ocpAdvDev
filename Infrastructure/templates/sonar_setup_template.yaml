@@ -29,7 +29,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 2Gi
+        storage: 3Gi
 - kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
@@ -41,7 +41,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 2Gi
+        storage: 3Gi
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -173,7 +173,7 @@ items:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: 2Gi
+              memory: 3Gi
               cpu: 750m
           livenessProbe:
             failureThreshold: 3

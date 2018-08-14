@@ -32,4 +32,4 @@ oc annotate namespace ${GUID}-jenkins    openshift.io/requester=${USER} --overwr
 oc annotate namespace ${GUID}-nexus      openshift.io/requester=${USER} --overwrite
 oc annotate namespace ${GUID}-sonarqube  openshift.io/requester=${USER} --overwrite
 
-sleep 30
+sleep 10

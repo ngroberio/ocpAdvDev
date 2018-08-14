@@ -52,7 +52,7 @@ objects:
               memory: 2Gi
             requests:
               cpu: 1
-              memory: 1Gi
+              memory: 2Gi
           volumeMounts:
           - mountPath: /nexus-data
             name: nexus
@@ -109,7 +109,7 @@ objects:
       limits:
         storage: 2Gi
       requests:
-        storage: 1Gi
+        storage: 2Gi
 - kind: Route
   apiVersion: v1
   metadata:

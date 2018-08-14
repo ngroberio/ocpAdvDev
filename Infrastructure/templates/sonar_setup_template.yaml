@@ -58,7 +58,7 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 1000Mi
+          memory: 1512Mi
         requests:
           memory: 512Mi
       type: Recreate
@@ -151,7 +151,7 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 1000Mi
+          memory: 1512Mi
         requests:
           memory: 512Mi
       type: Recreate

@@ -74,8 +74,8 @@ items:
               cpu: "3"
               memory: 3Gi
             requests:
-              cpu: "2"
-              memory: 2Gi
+              cpu: "3"
+              memory: 3Gi
           securityContext:
             capabilities: {}
             privileged: false

@@ -12,7 +12,7 @@ items:
     - ReadWriteMany
     resources:
       requests:
-        storage: 1Gi
+        storage: 3Gi
 - kind: Secret
   apiVersion: v1
   data:

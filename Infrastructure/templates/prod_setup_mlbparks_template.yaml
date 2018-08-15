@@ -16,8 +16,8 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
+          memory: 128Mi
+          cpu: 75m
         limits:
           memory: 1Gi
           cpu: 150m
@@ -107,8 +107,8 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 256Mi
-          cpu: 100m
+          memory: 128Mi
+          cpu: 75m
         limits:
           memory: 1Gi
           cpu: 150m

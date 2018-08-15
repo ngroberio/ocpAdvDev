@@ -29,7 +29,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
+        storage: 2Gi
 - kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
@@ -41,7 +41,7 @@ items:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
+        storage: 2Gi
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:
@@ -58,9 +58,9 @@ items:
         timeoutSeconds: 800
       resources:
         limits:
-          memory: 256Mi
+          memory: 384Mi
         requests:
-          memory: 128Mi
+          memory: 256Mi
       type: Recreate
     template:
       metadata:
@@ -118,7 +118,7 @@ items:
             timeoutSeconds: 1
           resources:
             limits:
-              memory: 256Mi
+              memory: 512Mi
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: postgresql-data
@@ -151,9 +151,9 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 256Mi
+          memory: 384Mi
         requests:
-          memory: 128Mi
+          memory: 256Mi
       type: Recreate
     template:
       metadata:

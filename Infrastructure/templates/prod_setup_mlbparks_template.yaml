@@ -19,7 +19,7 @@ items:
           memory: 256Mi
           cpu: 100m
         limits:
-          memory: 512Mi
+          memory: 1Gi
           cpu: 150m
       rollingParams:
         intervalSeconds: 1
@@ -110,7 +110,7 @@ items:
           memory: 256Mi
           cpu: 100m
         limits:
-          memory: 512Mi
+          memory: 1Gi
           cpu: 150m
       rollingParams:
         intervalSeconds: 1

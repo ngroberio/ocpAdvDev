@@ -20,7 +20,7 @@ items:
           memory: 256Mi
           cpu: 100m
         limits:
-          memory: 512Mi
+          memory: 1Gi
           cpu: 150m
       rollingParams:
         intervalSeconds: 1
@@ -105,10 +105,10 @@ items:
       resources:
         requests:
           memory: 256Mi
-          cpu: 150m
+          cpu: 100m
         limits:
-          memory: 512Mi
-          cpu: 250m
+          memory: 1Gi
+          cpu: 150m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%

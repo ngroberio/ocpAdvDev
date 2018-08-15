@@ -58,9 +58,9 @@ items:
         timeoutSeconds: 800
       resources:
         limits:
-          memory: 512Mi
+          memory: 256Mi
         requests:
-          memory: 512Mi
+          memory: 256Mi
       type: Recreate
     template:
       metadata:
@@ -151,9 +151,9 @@ items:
         timeoutSeconds: 1000
       resources:
         limits:
-          memory: 512Mi
+          memory: 256Mi
         requests:
-          memory: 512Mi
+          memory: 256Mi
       type: Recreate
     template:
       metadata:

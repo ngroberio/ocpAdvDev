@@ -35,7 +35,7 @@ PROJ_NAME=$GUID-nexus
 echo ">> STETP 1 >>>> Setting up Nexus"
 oc process -f $TEMPLATE | oc create -n $PROJ_NAME -f -
 
-../bin/nexusLivenessCheck.sh ${PROJ_NAME}
+./Infrastructure/bin/nexusLivenessCheck.sh ${PROJ_NAME}
 
 echo ">> STEP 2 >>>> Configuring Nexus"
 ROUTE=$(oc get route nexus3 --template='{{ .spec.host }}' -n ${PROJ_NAME})

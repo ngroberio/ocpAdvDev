@@ -49,10 +49,10 @@ objects:
           resources:
             limits:
               cpu: 2
-              memory: 3Gi
+              memory: 2Gi
             requests:
               cpu: 1
-              memory: 2Gi
+              memory: 1Gi
           volumeMounts:
           - mountPath: /nexus-data
             name: nexus
@@ -107,7 +107,7 @@ objects:
     - ReadWriteOnce
     resources:
       limits:
-        storage: 3Gi
+        storage: 2Gi
       requests:
         storage: 2Gi
 - kind: Route

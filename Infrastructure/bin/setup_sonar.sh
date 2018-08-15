@@ -14,11 +14,11 @@ echo ">> Setting up Sonarqube in project $GUID-sonarqube"
 # oc new-app -f ../templates/sonarqube.yaml --param .....
 
 # To be Implemented by Student
-TEMPLATE=../templates/sonar_setup_template.yaml
+TEMPLATE=./Infrastructure/templates/sonar_setup_template.yaml
 PROJ_NAME=$GUID-sonarqube
 
 oc create -f $TEMPLATE -n $PROJ_NAME
 
 echo ">> Sonarqube liveness check"
 sleep 50
-../bin/podLivenessCheck.sh sonarqube ${PROJ_NAME}
+./Infrastructure/bin/podLivenessCheck.sh sonarqube ${PROJ_NAME}

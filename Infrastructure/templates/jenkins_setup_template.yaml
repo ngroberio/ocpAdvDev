@@ -71,11 +71,11 @@ items:
             timeoutSeconds: 300
           resources:
             limits:
-              cpu: "3"
-              memory: 3Gi
+              cpu: "1"
+              memory: 1Gi
             requests:
-              cpu: "3"
-              memory: 3Gi
+              cpu: "1"
+              memory: 1256Mi
           securityContext:
             capabilities: {}
             privileged: false

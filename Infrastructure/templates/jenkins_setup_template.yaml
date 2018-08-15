@@ -72,10 +72,10 @@ items:
           resources:
             limits:
               cpu: "3"
-              memory: 2Gi
+              memory: 3Gi
             requests:
               cpu: "2"
-              memory: 1Gi
+              memory: 2Gi
           securityContext:
             capabilities: {}
             privileged: false

@@ -16,10 +16,10 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 128Mi
-          cpu: 75m
+          memory: 256Mi
+          cpu: 100m
         limits:
-          memory: 512Mi
+          memory: 256Mi
           cpu: 100m
       rollingParams:
         intervalSeconds: 1
@@ -103,11 +103,11 @@ items:
       activeDeadlineSeconds: 21600
       resources:
         requests:
-          memory: 128Mi
-          cpu: 75m
-        limits:
-          memory: 512Mi
+          memory: 256Mi
           cpu: 100m
+        limits:
+          memory: 256Mi
+          cpu: 110m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%

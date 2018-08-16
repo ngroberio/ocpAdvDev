@@ -36,14 +36,14 @@ objects:
             failureThreshold: 5
             initialDelaySeconds: 80
             periodSeconds: 30
-            timeoutSeconds: 70
+            timeoutSeconds: 150
             httpGet:
               port: 8081
           readinessProbe:
             failureThreshold: 3
             initialDelaySeconds: 80
             periodSeconds: 30
-            timeoutSeconds: 70
+            timeoutSeconds: 150
             tcpSocket:
               port: 8081
           resources:

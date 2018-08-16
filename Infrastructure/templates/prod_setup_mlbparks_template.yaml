@@ -19,8 +19,8 @@ items:
           memory: 128Mi
           cpu: 75m
         limits:
-          memory: 1Gi
-          cpu: 150m
+          memory: 512Mi
+          cpu: 100m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
@@ -110,8 +110,8 @@ items:
           memory: 128Mi
           cpu: 75m
         limits:
-          memory: 1Gi
-          cpu: 150m
+          memory: 512Mi
+          cpu: 100m
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
